@@ -1,0 +1,9 @@
+﻿.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    width: auto; 
+    height: 500px;
+}
+.green {
+    background-color: green;
+    color: white;
+}
