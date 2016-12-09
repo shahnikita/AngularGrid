@@ -27,7 +27,7 @@ namespace AngularGrid.Controllers
                 CurrentPage = page,
                 PageSize = pageSize
             };
-            using (StreamReader r = new StreamReader(@"D:\Nikita\DemoProjects\AngularGrid\AngularGrid\largeLoad.json"))
+            using (StreamReader r = new StreamReader(Server.MapPath("~/largeLoad.json")))
             {
                 string json = r.ReadToEnd();
                 pagedRecord.Content = JsonConvert.DeserializeObject<List<Employee>>(json);
@@ -55,7 +55,7 @@ namespace AngularGrid.Controllers
                 CurrentPage = page,
                 PageSize = pageSize
             };
-            using (StreamReader r = new StreamReader(@"D:\Nikita\DemoProjects\AngularGrid\AngularGrid\schema1.json"))
+            using (StreamReader r = new StreamReader(Server.MapPath("~/schema1.json")))
             {
                 string json = r.ReadToEnd();
                 pagedRecord.Content = JsonConvert.DeserializeObject<List<MultipleSelection>>(json);
