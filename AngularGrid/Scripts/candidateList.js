@@ -101,17 +101,9 @@ app.controller('CandidateController', function ($scope, CandidateListService, $r
 
         columnDefs: [
                     { field: 'CandidateID', displayName: 'Candidate ID' },
-                    { field: 'Prefix', displayName: 'Prefix' },
-                    { field: 'FirstName', displayName: 'First Name' },
-                    { field: 'MiddleName', displayName: 'Middle Name' },
-                    { field: 'LastName', displayName: 'Last Name' },
-                    { field: 'SSN', displayName: 'SSN' },
-                    { field: 'Birthdate', displayName: 'Birth date' },
-                    { field: 'Email', displayName: 'Email' },
-                    { field: 'Relocation', displayName: 'Relocation' },
-                    { field: 'AdditionalInfo', displayName: 'Additional Info' },
-
-
+                    { field: 'FirstName', displayName: 'First Name' },                   
+                    { field: 'LastName', displayName: 'Last Name' },                                   
+                    { field: 'Email', displayName: 'Email' },                   
         ],
         afterSelectionChange: function (selection, event) {
             $log.log("selection: " + selection.entity.name);

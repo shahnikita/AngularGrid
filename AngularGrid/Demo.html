@@ -5,16 +5,13 @@
     <link href="Content/ng-grid.css" rel="stylesheet" />
     <link href="Content/style.css" rel="stylesheet" />
     <script src="Scripts/jquery-1.9.1.min.js"></script>
-   <!-- <script src="Scripts/jquery-ui-1.11.4.js"></script>-->
+    <!-- <script src="Scripts/jquery-ui-1.11.4.js"></script>-->
 
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/ng-grid.js"></script>
     <script src="Scripts/app/app.js"></script>
 
 </head>
-<!--  <body ng-controller="MyCtrl">
-        <div class="gridStyle" ng-grid="gridOptions"></div>
-    </body>-->
 
 
 <body ng-app="myApp">
@@ -37,8 +34,7 @@
 
             <div>
                 <ul>
-                    <li ng-repeat="x in data.selected">
-                        {{ x.MultipleSelectionID }}
+                    <li ng-repeat="x in data.selected">{{ x.MultipleSelectionID }}
                     </li>
                 </ul>
             </div>

@@ -20,7 +20,7 @@ namespace AngularGrid.Controllers
             return View();
         }
 
-        public ActionResult LoadJson(string searchtext, int page = 1, int pageSize = 10, string sortBy = "CustomerID", string sortDirection = "asc")
+        public ActionResult LoadJsonCustomer(string searchtext, int page = 1, int pageSize = 10, string sortBy = "CustomerID", string sortDirection = "asc")
         {
             var pagedRecord = new PagedList<Employee>()
             {
@@ -86,28 +86,30 @@ namespace AngularGrid.Controllers
                 PageSize = pageSize
             };
 
-            using (StreamReader r = new StreamReader(@"D:\Nikita\DemoProjects\AngularGrid\AngularGrid\schema1.json"))
+            using (StreamReader r = new StreamReader(Server.MapPath("~/Data/Candidate.json")))
             {
                 string json = r.ReadToEnd();
                 pagedRecord.Content = JsonConvert.DeserializeObject<List<CandidateMaster>>(json);
 
             }
-            List<AngularGrid.Lib.Filter> filter = new List<AngularGrid.Lib.Filter>()
-                {
-                    new AngularGrid.Lib.Filter { PropertyName = "FirstName" ,Operation = Op .Contains, Value = searchtext  },
-                    new AngularGrid.Lib.Filter { PropertyName = "LastName" ,Operation = Op .Contains, Value =searchtext  },
-                     new AngularGrid.Lib.Filter { PropertyName = "Email" ,Operation = Op .Contains, Value = searchtext}
-                    };
-            var deleg = ExpressionBuilder.GetExpression<CandidateMaster>(filter).Compile();
-            pagedRecord.Content = pagedRecord.Content.Where(deleg).ToList();
-
+            //if (pagedRecord.Content != null && pagedRecord.Content.Count > 0 && searchtext!="")
+            //{
+            //    List<AngularGrid.Lib.Filter> filter = new List<AngularGrid.Lib.Filter>()
+            //    {
+            //        new AngularGrid.Lib.Filter { PropertyName = "FirstName" ,Operation = Op .Contains, Value = searchtext  },
+            //        new AngularGrid.Lib.Filter { PropertyName = "LastName" ,Operation = Op .Contains, Value =searchtext  },
+            //         new AngularGrid.Lib.Filter { PropertyName = "Email" ,Operation = Op .Contains, Value = searchtext}
+            //        };
+            //    var deleg = ExpressionBuilder.GetExpression<CandidateMaster>(filter).Compile();
+            //    pagedRecord.Content = pagedRecord.Content.Where(deleg).ToList();
+            //}
 
             pagedRecord.TotalRecords = pagedRecord.Content.Count;
             pagedRecord.Content = BLCollection.OrderBy<CandidateMaster>(pagedRecord.Content, sortBy + " " + sortDirection);
             pagedRecord.Content = pagedRecord.Content.Skip((page - 1) * pageSize)
            .Take(pageSize)
            .ToList();
-            return Json(null, JsonRequestBehavior.AllowGet);
+            return Json(pagedRecord, JsonRequestBehavior.AllowGet);
         }
 
 
